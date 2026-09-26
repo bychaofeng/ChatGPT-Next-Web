@@ -1,0 +1,39 @@
+name: Rehab Android prototype
+on:
+  push:
+    branches: ["feat/rehab-*"]
+    paths: ["rehab-trainer/**", ".github/workflows/rehab-android.yml"]
+  pull_request:
+    paths: ["rehab-trainer/**", ".github/workflows/rehab-android.yml"]
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: rehab-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  test-and-build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+      - uses: gradle/actions/setup-gradle@v4
+        with:
+          gradle-version: '8.9'
+      - name: Install required Android SDK components
+        run: |
+          sdkmanager "platforms;android-35" "build-tools;34.0.0"
+      - name: Test core and build debug app
+        working-directory: rehab-trainer
+        run: gradle --no-daemon :core:regressionTest :app:assembleDebug :app:lintDebug
+      - name: Upload debug APK (not a release)
+        uses: actions/upload-artifact@v4
+        with:
+          name: rehab-trainer-debug
+          path: rehab-trainer/app/build/outputs/apk/debug/app-debug.apk
+          if-no-files-found: error
+          retention-days: 7

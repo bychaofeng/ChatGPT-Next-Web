@@ -1,0 +1,70 @@
+PASS new learner has eight unknown skills, not a beginner grade
+PASS cold start needs no demographic or experience form
+PASS re-entering training resumes identical task
+PASS correct practice explores another skill
+PASS missing evidence leads to one targeted follow-up
+PASS weak-skill loop cannot lock learner indefinitely
+PASS preferred theme is honored without changing ability
+PASS new learner does not inherit another learner's records
+PASS switching learners restores independent active sessions
+PASS delete removes source and derived records without resetting global usage
+PASS same submission is idempotent before retry
+PASS changed answer creates immutable new attempt
+PASS help creates separate assisted attempt and preserves original
+PASS repeated evaluation cannot double-count evidence
+PASS invented quote is rejected
+PASS wrong criterion IDs are rejected
+PASS review candidate cannot change observed counts
+PASS dispute removes provisional profile effect
+PASS revocation rebuilds projection from remaining sources
+PASS withdraw content removes its influence for every learner
+PASS chatting does not change skill counts
+PASS memory clues do not mint scores
+PASS assistant quote cannot become learner evidence
+PASS memory cannot cite a message outside processed batch
+PASS same memory batch is idempotent
+PASS summary triggers at six completed pairs, not six messages
+PASS empty ending never triggers summary
+PASS requesting fixed case fact is not teaching help
+PASS facts shown after submission cannot leak into its assessment
+PASS old profile is absent from evaluation payload
+PASS guided success never counts as unaided practice
+PASS showing same feedback twice does not move review date
+PASS help anchors trial three-day review even after guided success
+PASS unaided practice success schedules observation not mastery
+PASS repeat-family exposure does not masquerade as novel task
+PASS late evaluation attaches to old answer not current revision
+PASS pending cancellation is not a wrong answer and late result cannot override
+PASS pending answer cannot silently disappear on ordinary finish
+PASS question cannot change after draft or answer exists
+PASS frozen definition and draft survive storage round trip
+PASS corrupt storage is not auto-erased
+PASS future storage schema is rejected
+PASS failing in-memory transaction publishes nothing
+PASS failed oversized disk commit preserves memory and file
+PASS JSON round trip covers Unicode controls escaping and null
+PASS JSON rejects duplicate keys
+PASS JSON rejects truncation trailing data and invalid numbers
+PASS JSON nesting limit is enforced
+PASS HTTPS-only endpoints and exact path handling
+PASS successful mock evaluation updates practice not verified skills
+PASS network payload separates system instructions and untrusted answer
+PASS model profile_patch and other excess fields are rejected
+PASS truncated output remains pending
+PASS empty output remains pending
+PASS foreign attempt version rejected
+PASS MET result requires a quote from current answer
+PASS UNCERTAIN response is quarantined even if model says no review needed
+PASS HTTP error does not log response body or grade learner
+PASS request cap counts failures and cannot be reset by new learner
+PASS accepted evaluation retry does not call provider again
+PASS generation can change only question, not fixed scenario
+PASS model-requested content review leaves original question
+PASS coach input includes no unopened fixed case facts
+PASS coach output is discussion not ability evidence
+PASS absorb validates processed IDs and leaves competency untouched
+PASS API credentials never enter snapshot or export
+PASS concurrent identical submissions retain one logical attempt
+PASS codec preserves full evaluated and discussed session
+
+RESULT: 68 passed, 0 failed. All model calls were mocks; no clinical or device validation.
